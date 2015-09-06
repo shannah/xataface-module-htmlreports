@@ -94,9 +94,9 @@ class modules_htmlreports {
 			}
 			return $res;
 		} else {
-			$res = mysql_query($sql, df_db());
+			$res = xf_db_query($sql, df_db());
 			if ( !$res ){
-				throw new Exception(mysql_error(df_db()));
+				throw new Exception(xf_db_error(df_db()));
 			}
 			return $res;
 		}
@@ -148,7 +148,7 @@ class modules_htmlreports {
 		$table = Dataface_Table::loadTable($query['-table']);
 		$at = Dataface_ActionTool::getInstance();
 		
-		while ($row = mysql_fetch_assoc($res) ){
+		while ($row = xf_db_fetch_assoc($res) ){
 			$report = new Dataface_Record(self::REPORTS_TABLE, $row);
 			//$perms = $table->getPermissions(array('report'=>$report));
 			$icon = $this->getBaseURL().'/images/report_icon.png';
